@@ -4,7 +4,10 @@ import tracetools as nt
 def tracespec(scidatain,nline=800,ntrace=1):
     "tr, trpsf = jw.tracespec(image)  - Finds trace of spectral orders"
     
-    isize=scidatain.shape  #need to check size of input image.  transpose if necessary.
+    isize=scidatain.shape  # need to check size of input image.
+    print('size of imput image:',isize)
+    
+    # transpose if necessary.
     if(isize[1]>isize[0]):
         scidata=np.transpose(scidatain)
     else :

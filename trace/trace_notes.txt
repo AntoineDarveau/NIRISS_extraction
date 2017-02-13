@@ -1,0 +1,13 @@
+Notes on trace.f90
+
+! Constants ---------------------------
+
+nksd2 = nKsize/2    ! precompute size of PSF/2 -> 64/2
+
+
+! Parameters to control trace ----------
+
+ncut = 35          ! Width of spectrum to zero out
+bcut = 3.0d0       ! S/N threshold for finding a trace
+tcut = 10.0d0      ! Threshold for traces to jump
+ncutpsf = 24       ! Width of initial PSF to fit - must be less than nKsize/2
