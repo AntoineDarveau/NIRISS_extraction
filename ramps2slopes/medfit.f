@@ -1,6 +1,17 @@
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
       SUBROUTINE medfit(x,y,ndata,a,b,abdev)
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+C     Description:
+C
+C     Fits y = a + bx by the criterion of least absolute deviations.
+C     The arrays x and y of length ndata are the input experimental
+C     points. The fitted parameters a and b are outputs, along with
+C     abdev which is the mean absolute deviation in y of the experimen-
+C     tal points from the fitted line. This routine uses the routine
+C     ROFUNC with communication via common bloc.
+C
+C     Absolute deviation for y : ! $ \Sigma \abs{y_i-ax_i+b} $ (LaTex)
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
       INTEGER ndata,NMAX,ndatat
       PARAMETER (NMAX=1000) 
       REAL*8 a,abdev,b,x(ndata),y(ndata),

@@ -1,5 +1,5 @@
 subroutine robustfit(naxes,Imagecube,bpix,sat,zpt,slope,Image)
-! naxes(1,2,3) x,y,nframes
+! naxes(1,2,3) nframe, x, y
 use precision
 implicit none
 ! import vars
