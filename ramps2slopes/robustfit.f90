@@ -15,6 +15,7 @@ real(double), allocatable, dimension(:) :: x,y
 allocate(x(naxes(1)),y(naxes(1)))
 dnaxes3=dble(naxes(1)) !pre-compute double 
 
+write(6,*) 'Imagecube size in robustfit.f90 :'
 write(6,*) size(Imagecube,1),size(Imagecube,2),size(Imagecube,3)
 
 !loop over 2D image to measure ramps
@@ -31,6 +32,7 @@ do i=1,naxes(2)
 
 !     robust fitting
       if(npt.ge.2)then
+         ! Fit a line (y = a*x + b) by absolute deviation minimisation
          call medfit(x,y,npt,a,b,abdev)
 !        create Image
          zpt(i,j)=a

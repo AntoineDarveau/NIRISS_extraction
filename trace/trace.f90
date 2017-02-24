@@ -13,7 +13,7 @@ subroutine trace(naxes,Image,bpix,nline,nTrace,dTrace,bf,solpsf,posguess)
 ! - nTrace is the number of trace's order to fit (only =1 for now)
 !
 ! Outputs:
-! 
+!
 ! - dTrace is the position of the trace on the Image
 ! - bf ?
 ! - solpsf ?
@@ -191,11 +191,13 @@ do k=1,nTrace ! loop over expected number of traces
 
 
    ! calculate best-fit scaling of PSF to line.
+   ! With correlation maximization??
 
    S = 1.0d0
-   Sxy = Sum(line(xm:xp)*lpsf(nksd2-(i-xm):nksd2+(xp-i)))
-   Sxx = Sum(lpsf(nksd2-(i-xm):nksd2+(xp-i))*lpsf(nksd2-(i-xm):nksd2+(xp-i)))
-   Sx  = Sum(lpsf(nksd2-(i-xm):nksd2+(xp-i)))
+   Sxy = Sum( line(xm : xp) * lpsf(nksd2-(i-xm):nksd2+(xp-i)) )
+   Sxx = Sum( lpsf(nksd2-(i-xm):nksd2+(xp-i))   &
+             * lpsf(nksd2-(i-xm):nksd2+(xp-i))  )
+   Sx  = Sum( lpsf(nksd2-(i-xm):nksd2+(xp-i)) )
    Sy  = Sum(line(xm:xp))
    bf(nline,k) = (S*Sxy-Sx*Sy)/(S*Sxx-Sx*Sx)  ! line = psf * bf
    write(0,*) "bf: ",bf(nline,k)
@@ -203,7 +205,7 @@ do k=1,nTrace ! loop over expected number of traces
 
 !  calculate residual
 
-   line(xm:xp) = line(xm:xp)-lpsf(nksd2-(i-xm):nksd2+(xp-i))*bf(nline,k)
+   line(xm:xp) = line(xm:xp) - lpsf(nksd2-(i-xm):nksd2+(xp-i))*bf(nline,k)
 
 
 !  Plot the fitted PSF against the line -------------------------
@@ -214,11 +216,11 @@ do k=1,nTrace ! loop over expected number of traces
       px(j-xm+1) = real(j)  ! X axis
    enddo
    py = real(lpsf(nksd2-(i-xm):nksd2+(xp-i))*bf(nline,k)) ! Y-axis
-!   pmin = minval(py)
-!   py = log10(py-pmin+1.0d0)
-!   call pgsci(2+k)  ! change plotting colour
-!   call pgline(size(line(xm:xp)),px,py) ! plot a line
-!   call pgsci(1) ! change plotting colour back to default
+  ! pmin = minval(py)
+  ! py = log10(py-pmin+1.0d0)
+  ! call pgsci(2+k)  ! change plotting colour
+  ! call pgline(size(line(xm:xp)),px,py) ! plot a line
+  ! call pgsci(1) ! change plotting colour back to default
    deallocate(px,py) ! de-allocate plotting variables
 !  --------------------------------------------------------------
 

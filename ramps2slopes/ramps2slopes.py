@@ -5,6 +5,7 @@ import robustfit as rb
 
 def r2s(scidata, bpix=np.float(-1.0e10), sat=np.float(65535.0)):
     "Usage: zpt,slope,image=r2s(scidata)"
+    print('Computing ramps2slope')
     naxes = np.zeros(3, dtype="int32")  # store size of image.
     naxes[0] = int(scidata.shape[0])
     naxes[1] = int(scidata.shape[1])

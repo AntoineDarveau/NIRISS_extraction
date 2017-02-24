@@ -10,7 +10,7 @@ C     abdev which is the mean absolute deviation in y of the experimen-
 C     tal points from the fitted line. This routine uses the routine
 C     ROFUNC with communication via common bloc.
 C
-C     Absolute deviation for y : ! $ \Sigma \abs{y_i-ax_i+b} $ (LaTex)
+C     Absolute deviation for y : $ \Sigma \abs{y_i-(a+bx_i)} $ (LaTex)
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
       INTEGER ndata,NMAX,ndatat
       PARAMETER (NMAX=1000) 
